@@ -1,10 +1,10 @@
-# Crypto Testnet Advisor
+# Crypto Advisor
 
 An AI-powered application to determine the optimal interaction frequency for crypto testnets and receive clear, actionable steps to maximize potential rewards.
 
 ## About The Project
 
-Crypto Testnet Advisor helps users navigate the often-confusing world of cryptocurrency testnets. By simply describing a testnet or its tasks, the application leverages Google's Gemini AI, grounded with real-time Google Search results, to provide a tailored action plan. It suggests how often you should interact with the platform (daily, weekly, etc.), gives you a clear to-do list, and explains the reasoning behind its recommendations.
+Crypto Advisor helps users navigate the often-confusing world of cryptocurrency testnets. By simply describing a testnet or its tasks, the application leverages Google's Gemini AI, grounded with real-time Google Search results, to provide a tailored action plan. It suggests how often you should interact with the platform (daily, weekly, etc.), gives you a clear to-do list, and explains the reasoning behind its recommendations.
 
 This tool is designed for both beginners and experienced users looking to optimize their airdrop farming strategy efficiently.
 
