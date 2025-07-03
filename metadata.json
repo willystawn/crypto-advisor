@@ -1,0 +1,5 @@
+{
+  "name": "Crypto Testnet Advisor",
+  "description": "An AI-powered application to determine the optimal interaction frequency (daily, weekly, etc.) for crypto testnets and receive clear, actionable steps.",
+  "requestFramePermissions": []
+}
