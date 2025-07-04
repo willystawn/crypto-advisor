@@ -49,15 +49,7 @@ You will need a Google Gemini API key to run this application.
 
 3.  **Running the Application:**
     Since this is a simple project without a build step, you must run it using a local web server to avoid potential CORS or module resolution issues.
-
-    - **Using Python's built-in server (if you have Python installed):**
-      Open your terminal in the project's root directory and run:
-      ```bash
-      # For Python 3
-      python -m http.server
-      ```
-      Then, open your browser and go to `http://localhost:8000`.
-
+    
     - **Using Node.js `serve` package:**
       If you have Node.js, you can install and use the `serve` package:
       ```bash
