@@ -1,15 +1,15 @@
 import React, { useState, useCallback, useRef } from 'react';
-import { getTestnetRecommendation } from './services/geminiService';
+import { getAirdropRecommendation } from './services/geminiService';
 import type { Recommendation } from './types';
 import Header from './components/Header';
 import LoadingSpinner from './components/LoadingSpinner';
 import ResultCard from './components/ResultCard';
 import { SparklesIcon, ExclamationTriangleIcon, AIBrainIcon } from './components/Icons';
 
-const examples = ["Berachain BEX Liquidity", "Zora Network Quests", "Taiko Testnet Bridge"];
+const examples = ["ZkSync daily transactions", "LayerZero bridging", "Starknet wallet activity"];
 
 export default function App(): React.ReactNode {
-  const [testnetDescription, setTestnetDescription] = useState<string>('');
+  const [projectDescription, setProjectDescription] = useState<string>('');
   const [result, setResult] = useState<Recommendation | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -20,7 +20,7 @@ export default function App(): React.ReactNode {
   const fetchRecommendation = useCallback(async (description: string) => {
     if (isLoadingRef.current) return;
     if (!description.trim()) {
-      setError('Please describe the testnet first.');
+      setError('Please describe the project or task first.');
       return;
     }
 
@@ -29,7 +29,7 @@ export default function App(): React.ReactNode {
     setResult(null);
 
     try {
-      const apiResult = await getTestnetRecommendation(description);
+      const apiResult = await getAirdropRecommendation(description);
       setResult(apiResult);
     } catch (err) {
       console.error(err);
@@ -41,11 +41,11 @@ export default function App(): React.ReactNode {
 
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetchRecommendation(testnetDescription);
-  }, [testnetDescription, fetchRecommendation]);
+    fetchRecommendation(projectDescription);
+  }, [projectDescription, fetchRecommendation]);
 
   const handleExampleClick = useCallback((prompt: string) => {
-    setTestnetDescription(prompt);
+    setProjectDescription(prompt);
     fetchRecommendation(prompt);
   }, [fetchRecommendation]);
 
@@ -58,17 +58,17 @@ export default function App(): React.ReactNode {
           <main className="mt-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="testnet-description" className="block text-lg font-medium text-slate-300 mb-2">
-                  Testnet Name or Description
+                <label htmlFor="project-description" className="block text-lg font-medium text-slate-300 mb-2">
+                  Project, Protocol, or Airdrop Task
                 </label>
                 <p className="text-sm text-slate-400 mb-4">
-                  Enter the testnet name (e.g., "Berachain", "Linea Park Quests") or describe its tasks to get an AI-powered recommendation.
+                  Enter a project name (e.g., "ZkSync", "LayerZero") or describe a task to get an AI-powered airdrop strategy.
                 </p>
                 <textarea
-                  id="testnet-description"
-                  value={testnetDescription}
-                  onChange={(e) => setTestnetDescription(e.target.value)}
-                  placeholder="e.g., 'Daily check-in and weekly quests on Linea Park'"
+                  id="project-description"
+                  value={projectDescription}
+                  onChange={(e) => setProjectDescription(e.target.value)}
+                  placeholder="e.g., 'How to get the ZkSync airdrop?' or 'Starknet wallet interactions'"
                   className="w-full h-48 p-3 bg-slate-800 border-2 border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 resize-none placeholder-slate-500 hide-scrollbar"
                   disabled={isLoading}
                   aria-describedby="form-help"
@@ -94,7 +94,7 @@ export default function App(): React.ReactNode {
 
               <button
                 type="submit"
-                disabled={isLoading || !testnetDescription.trim()}
+                disabled={isLoading || !projectDescription.trim()}
                 className="w-full flex items-center justify-center gap-3 bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 disabled:scale-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500"
               >
                 {isLoading ? (
@@ -121,7 +121,7 @@ export default function App(): React.ReactNode {
             <div className="flex flex-col items-center justify-center text-center text-slate-400">
               <LoadingSpinner />
               <p className="mt-4 text-lg font-medium">AI is thinking...</p>
-              <p className="text-sm">Analyzing your testnet description.</p>
+              <p className="text-sm">Analyzing your request.</p>
             </div>
           )}
           {error && (
@@ -137,8 +137,8 @@ export default function App(): React.ReactNode {
           {!isLoading && !error && !result && (
             <div className="text-center text-slate-500">
               <AIBrainIcon />
-              <h2 className="mt-6 text-xl font-semibold text-slate-400">Ready for your recommendation?</h2>
-              <p className="mt-2">Your AI-powered plan will appear here once you describe a testnet.</p>
+              <h2 className="mt-6 text-xl font-semibold text-slate-400">Ready for your strategy?</h2>
+              <p className="mt-2">Your AI-powered airdrop plan will appear here.</p>
             </div>
           )}
         </div>

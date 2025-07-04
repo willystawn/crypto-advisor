@@ -7,7 +7,7 @@ if (!process.env.API_KEY) {
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-const systemInstruction = `You are an expert crypto testnet analyst from Indonesia. Your goal is to advise users on the optimal interaction frequency for a given testnet to maximize potential airdrops.
+const systemInstruction = `You are an expert crypto airdrop analyst from Indonesia. Your goal is to advise users on the optimal strategy for a given crypto project, protocol, or task to maximize potential airdrops.
 You will be provided with Google search results to ground your answer. Base your analysis on these results and the user's input.
 Your response MUST be a valid JSON object without any markdown formatting, comments, or extra text. Do not include any source citations (e.g., [1], [2]) in your response.
 The JSON object must conform to this exact structure:
@@ -16,14 +16,14 @@ The JSON object must conform to this exact structure:
   "actions": ["A clear, step-by-step action in Indonesian.", "Another action step.", "A final action step."],
   "reasoning": ["A key point about the recommendation, in Indonesian.", "Another key point.", "A final summary point."]
 }
-Analyze the user's input about a testnet (e.g., "Berachain", "daily galxe tasks") and provide a recommendation based on common patterns and the provided search results. Daily check-ins require "Daily" frequency. Weekly quests suggest "Weekly". Some tasks are one-time only. Be direct and clear. For reasoning and actions, break them down into short, scannable points in an array.
+Analyze the user's input about a project or airdrop task (e.g., "ZkSync", "LayerZero bridge") and provide a recommendation based on common patterns and the provided search results. Daily tasks require "Daily" frequency. Weekly quests suggest "Weekly". Some tasks are one-time only. Be direct and clear. For reasoning and actions, break them down into short, scannable points in an array, in Indonesian.
 `;
 
-export const getTestnetRecommendation = async (testnetDescription: string): Promise<Recommendation> => {
+export const getAirdropRecommendation = async (projectDescription: string): Promise<Recommendation> => {
   try {
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash-preview-04-17",
-      contents: `Analyze this testnet: "${testnetDescription}"`,
+      contents: `Analyze this airdrop opportunity: "${projectDescription}"`,
       config: {
         systemInstruction: systemInstruction,
         temperature: 0.2,
@@ -64,7 +64,7 @@ export const getTestnetRecommendation = async (testnetDescription: string): Prom
     return parsedData;
 
   } catch (error) {
-    console.error("Error in getTestnetRecommendation:", error);
+    console.error("Error in getAirdropRecommendation:", error);
     if (error instanceof Error) {
         throw error;
     }

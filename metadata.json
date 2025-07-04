@@ -1,5 +1,6 @@
 {
-  "name": "Crypto Testnet Advisor",
-  "description": "An AI-powered application to determine the optimal interaction frequency (daily, weekly, etc.) for crypto testnets and receive clear, actionable steps.",
-  "requestFramePermissions": []
+  "name": "Crypto Airdrop Advisor",
+  "description": "An AI-powered application to find and optimize strategies for crypto airdrops, providing clear, actionable steps.",
+  "requestFramePermissions": [],
+  "prompt": ""
 }

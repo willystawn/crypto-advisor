@@ -10,10 +10,10 @@ export default function Header(): React.ReactNode {
             </div>
             <div>
                 <h1 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-                    Crypto Advisor
+                    Airdrop Advisor
                 </h1>
                 <p className="mt-1 text-md text-slate-400">
-                    Your AI guide for maximizing testnet rewards.
+                    Your AI guide for maximizing airdrop rewards.
                 </p>
             </div>
         </div>
